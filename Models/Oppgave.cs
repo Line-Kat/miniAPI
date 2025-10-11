@@ -30,5 +30,5 @@ public class Oppgave {
     /// Dato og klokkeslett for opprettelse av oppgaven settes automatisk.
     /// </summary>    
     public DateTime Opprettet { get; set; } = DateTime.UtcNow;
-    } 
-}
+} 
+
