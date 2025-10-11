@@ -11,7 +11,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Oppgave {
 
     /// <summary>
-    /// Unik identifikator for oppgaven (primærnøkkel) som genereres automatisk ved opprettelse.
+    /// Unik identifikator for oppgaven (primærnøkkel) som genereres automatisk ved opprettelse når databasen er koblet til via Entity Framework Core.
+    /// I nåværende versjon uten database, settes ID manuelt i service-klassen.
     /// </summary>
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
