@@ -1,0 +1,32 @@
+# .NET og Visual Studio
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build-resultater
+*.dll
+*.exe
+*.log
+*.pdb
+
+# NuGet-pakker
+*.nupkg
+packages/
+.nuget/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Rider
+.idea/
+
+# Mac og Windows systemfiler
+.DS_Store
+Thumbs.db
+
+# Swagger genererte filer (hvis noen)
+swagger/
