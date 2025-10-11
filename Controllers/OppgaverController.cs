@@ -47,7 +47,11 @@ public class OppgaverController : ControllerBase {
     public ActionResult<Oppgave> OpprettOppgave(Oppgave oppgave) {
         var nyOppgave = _service.LeggTilOppgave(oppgave);
         
-        return CreatedAtAction(nameof(HentOppgaveEtterId), new {id = nyOppgave.Id, nyOppgave});
+        return CreatedAtAction(
+            nameof(HentOppgaveEtterId), 
+            new {id = nyOppgave.Id},
+            nyOppgave
+            );
     }
 
     /// <summary>

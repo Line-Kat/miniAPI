@@ -7,6 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Registrerer OppgaveService for dependency injection
+builder.Services.AddSingleton<OppgaveService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
