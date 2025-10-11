@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// Klasse som håndterer forettningslogikken.
+/// Klasse som håndterer forretningslogikken.
 /// </summary>
 
 public class OppgaveService {
@@ -38,7 +38,7 @@ public class OppgaveService {
     /// </summary>
     public Oppgave LeggTilOppgave( Oppgave oppgave ) {
         oppgave.Id = _nesteId++; // Uten database, settes Id manuelt i Service-klassen
-        _oppgaver.Add( oppgave );
+        _oppgaver.Add(oppgave);
 
         return oppgave;
     }
@@ -53,7 +53,7 @@ public class OppgaveService {
         var oppgave = _oppgaver.FirstOrDefault( o => o.Id == id );
         if ( oppgave == null ) return null;
 
-        _oppgaver.Remove( oppgave );
+        _oppgaver.Remove(oppgave);
         
         return oppgave;
     }

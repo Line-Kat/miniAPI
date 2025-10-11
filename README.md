@@ -5,8 +5,9 @@ Dette er et enkelt Web API bygget med ASP.NET Core. Prosjektet demonstrerer hvor
 ## Funksjonalitet
 
 - Hente alle oppgaver (`GET /api/oppgaver`)
+- Hente oppgave etter ID (`GET /api/oppgaver/{id}`)
 - Legge til ny oppgave (`POST /api/oppgaver`)
-- Slette oppgaver (`DELETE /api/oppgaver/{id}`)
+- Slette oppgaver etter ID (`DELETE /api/oppgaver/{id}`)
 
 ## Teknologier
 
