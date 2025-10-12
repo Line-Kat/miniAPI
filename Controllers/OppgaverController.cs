@@ -16,6 +16,8 @@ namespace miniAPI.Controllers {
         // OppgaveService injiseres via dependency injection og lagres i et readonly-felt.
         // Dette gir controlleren tilgang til forretningslogikken uten å være ansvarlig for instansiering.
         private readonly OppgaveService _service;
+
+        // Kontruktør
         public OppgaverController( OppgaveService service) {
             _service = service;
         }
@@ -47,7 +49,7 @@ namespace miniAPI.Controllers {
         /// CreatedAtAction returnerer statuskode 201 Created, en Location-header med URL til den nye ressursen og selve objektet.
         /// </summary>
         [HttpPost]
-        public ActionResult<Oppgave> OpprettOppgave(Oppgave oppgave) {
+        public ActionResult<Oppgave> LeggTilOppgave(Oppgave oppgave) {
             var nyOppgave = _service.LeggTilOppgave(oppgave);
             
             return CreatedAtAction(

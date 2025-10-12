@@ -2,6 +2,10 @@
 
 Dette er et enkelt Web API bygget med ASP.NET Core. Prosjektet demonstrerer hvordan man kan strukturere en løsning med kontroller, modeller og endepunkter, og hvordan man kan bruke innebygd validering for å sikre datakvalitet.
 
+## Versjonskontroll
+
+Prosjektet bruker Git for versjonskontroll. Siden jeg har jobbet alene med utviklingen, har jeg valgt å jobbe direkte i på main-branchen. I et team-prosjekt ville jeg brukt en branch-struktur (f. eks. feature-branches og bugfix-branches for å sikre oversikt og redusere risiko for merge-konflikter. )	
+
 ## Prosjektstruktur og namespace
 
 Prosjektet er organisert etter ansvar og funksjon, med egne mapper og namespaces for modeller, tjenester, kontroller og datatilgang. Dette forbedrer prosjektets struktur, gjør koden lettere å navigere, og følger beste praksis i .NET. Det gir også mer presise `using`-direktiver og forhindrer navnekonflikter.
@@ -43,3 +47,9 @@ Dette gir et godt grunnlag for en skalerbar løsning med databaseintegrasjon, te
 ## Formål
 
 Prosjektet er laget som en del av min læring i .NET og C#. Det viser hvordan man kan bygge en enkel, men strukturert løsning med fokus på god kodepraksis, typografi og dokumentasjon.
+
+## Videre arbeid
+
+- [] Legge til metode for oppdatering av oppgaver (PUT).
+- [] Implementere DTO-er for bedre API-struktur og datavalidering.
+- [] Lage en enkel frontend i React for å visualisere og teste API-et.
