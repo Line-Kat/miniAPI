@@ -1,4 +1,6 @@
 using miniAPI.Services;
+using miniAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Registrerer OppgaveService for dependency injection
-builder.Services.AddSingleton<OppgaveService>();
+// Registrerer OppgaveRepository og OppgaveService for dependency injection.
+// Scoped livstid brukes fordi tjenestene jobber med DbContext, som også er scoped.
+// Dette sikrer at hver HTTP-forespørsel får sin egen instans og unngår trådproblemer.
+builder.Services.AddScoped<OppgaveRepository>();
+builder.Services.AddScoped<OppgaveService>();
+builder.Services.AddDbContext<OppgaveContext>(options =>
+	options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
 

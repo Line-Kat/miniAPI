@@ -12,8 +12,8 @@ namespace miniAPI.Models {
     public class Oppgave {
 
         /// <summary>
-        /// Unik identifikator for oppgaven (primærnøkkel) som genereres automatisk ved opprettelse når databasen er koblet til via Entity Framework Core.
-        /// I nåværende versjon uten database, settes ID manuelt i service-klassen.
+        /// Unik identifikator for oppgaven (primærnøkkel).
+        /// Genereres automatisk av databasen via Entity Framework Core.
         /// </summary>
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -29,7 +29,8 @@ namespace miniAPI.Models {
 
         /// <summary>
         /// Dato og klokkeslett for opprettelse av oppgaven settes automatisk.
-        /// </summary>    
+        /// </summary>
+        [Required]
         public DateTime Opprettet { get; set; } = DateTime.UtcNow;
     }
 }

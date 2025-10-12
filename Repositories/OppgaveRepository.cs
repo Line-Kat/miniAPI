@@ -46,7 +46,7 @@ namespace miniAPI.Repositories {
         /// Asynkron metode som legger til oppgave i databasen.
         /// </summary>
         public async Task<Oppgave> LeggTilOppgaveAsync(Oppgave oppgave) {
-            _context.Oppgaver.Add(oppgave);
+            await _context.Oppgaver.AddAsync(oppgave);
             await _context.SaveChangesAsync();
 
             return oppgave;

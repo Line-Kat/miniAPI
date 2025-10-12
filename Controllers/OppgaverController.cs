@@ -28,8 +28,8 @@ namespace miniAPI.Controllers {
         /// ActionResult er en returtype som brukes i controller-metoder for å representere et HTTP-svar.
         /// </summary>
         [HttpGet]
-        public ActionResult<List<Oppgave>> HentAlle() {
-            var oppgaver = _service.HentAlle();
+        public async Task<ActionResult<List<Oppgave>>> HentAlle() {
+            var oppgaver = await _service.HentAlle();
             return Ok(oppgaver);
         }
 
@@ -37,8 +37,8 @@ namespace miniAPI.Controllers {
         /// Metode som returnerer en bestemt oppgave basert på ID eller NotFound om oppgaven ikke finnes.
         /// </summary>
         [HttpGet("{id}")]
-        public ActionResult<Oppgave> HentOppgaveEtterId(int id) {
-            var oppgave = _service.HentOppgaveEtterId(id);
+        public async Task<ActionResult<Oppgave>> HentOppgaveEtterId(int id) {
+            var oppgave = await _service.HentOppgaveEtterId(id);
             if(oppgave == null) return NotFound();
             
             return Ok(oppgave);
@@ -49,8 +49,8 @@ namespace miniAPI.Controllers {
         /// CreatedAtAction returnerer statuskode 201 Created, en Location-header med URL til den nye ressursen og selve objektet.
         /// </summary>
         [HttpPost]
-        public ActionResult<Oppgave> LeggTilOppgave(Oppgave oppgave) {
-            var nyOppgave = _service.LeggTilOppgave(oppgave);
+        public async Task<ActionResult<Oppgave>> LeggTilOppgave(Oppgave oppgave) {
+            var nyOppgave = await _service.LeggTilOppgave(oppgave);
             
             return CreatedAtAction(
                 nameof(HentOppgaveEtterId), 
@@ -64,8 +64,8 @@ namespace miniAPI.Controllers {
         /// Returnerer 404 dersom oppgaven ikke finnes.
         /// </summary>
         [HttpDelete("{id}")]
-        public ActionResult<Oppgave> SlettOppgaveEtterId(int id) {
-            var slettet = _service.SlettOppgaveEtterId(id);
+        public async Task<ActionResult<Oppgave>> SlettOppgaveEtterId(int id) {
+            var slettet = await _service.SlettOppgaveEtterId(id);
             if(slettet == null) return NotFound();
 
             return Ok(slettet);
