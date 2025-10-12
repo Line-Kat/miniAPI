@@ -50,6 +50,6 @@ Prosjektet er laget som en del av min læring i .NET og C#. Det viser hvordan ma
 
 ## Videre arbeid
 
-- [] Legge til metode for oppdatering av oppgaver (PUT).
-- [] Implementere DTO-er for bedre API-struktur og datavalidering.
-- [] Lage en enkel frontend i React for å visualisere og teste API-et.
+- [ ] Legge til metode for oppdatering av oppgaver (PUT).
+- [ ] Implementere DTO-er for bedre API-struktur og datavalidering.
+- [ ] Lage en enkel frontend i React for å visualisere og teste API-et.
