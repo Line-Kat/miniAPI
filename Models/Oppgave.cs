@@ -25,7 +25,7 @@ namespace miniAPI.Models {
         /// </summary>
         [Required(ErrorMessage = "Oppgaven må ha en tittel.")]
         [StringLength(100, ErrorMessage = "Tittelen kan ikke være lengre enn 100 tegn.")]
-        public string Tittel { get; set; }
+        public string Tittel { get; set; } = string.Empty; // Ved å sette string.Empty får Tittel en standardverdi ("") når et nytt Oppgave-objekt opprettes
 
         /// <summary>
         /// Dato og klokkeslett for opprettelse av oppgaven settes automatisk.

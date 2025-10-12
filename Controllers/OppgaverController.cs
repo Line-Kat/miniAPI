@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using miniAPI.Models;
+using miniAPI.Services;
 
 namespace miniAPI.Controllers {
         /// <summary>
