@@ -4,7 +4,7 @@ Dette er et enkelt Web API bygget med ASP.NET Core. Prosjektet demonstrerer hvor
 
 ## Versjonskontroll
 
-Prosjektet bruker Git for versjonskontroll. Siden jeg har jobbet alene med utviklingen, har jeg valgt å jobbe direkte i på main-branchen. I et team-prosjekt ville jeg brukt en branch-struktur (f. eks. feature-branches og bugfix-branches for å sikre oversikt og redusere risiko for merge-konflikter. )	
+Prosjektet bruker Git for versjonskontroll. Siden jeg har jobbet alene med utviklingen, har jeg valgt å jobbe direkte på main-branchen. I et team-prosjekt ville jeg brukt en branch-struktur (f. eks. feature-branches og bugfix-branches for å sikre oversikt og redusere risiko for merge-konflikter. )	
 
 ## Prosjektstruktur og namespace
 
@@ -27,22 +27,30 @@ Dette gir et godt grunnlag for en skalerbar løsning med databaseintegrasjon, te
 ## Funksjonalitet
 
 - Hente alle oppgaver (`GET /api/oppgaver`)
+  -> Returnerer en liste over alle oppgavene fra databasen. Bruker async/await for effektiv ressursbruk.
 
 - Hente oppgave etter ID (`GET /api/oppgaver/{id}`)
+  -> Returnerer en bestemt oppgave basert på ID, eller 404 Not Found hvis den ikke finnes.
 
 - Legge til ny oppgave (`POST /api/oppgaver`)
+  -> Oppretter en ny oppgave i databasen og returnerer 201 Created.
 
 - Slette oppgaver etter ID (`DELETE /api/oppgaver/{id}`)
+  -> Fjerner oppgaven fra databasen hvis den finnes. Returnerer 200 OK eller 404 Not found.
+
+- Alle metoder er implementert med `async/await` i repository, service og controller.
+
+- API-et er koblet til en database via Entity Framework Core med migrasjoner.
 
 ## Teknologier
 
-- **ASP.NET Core** – brukes til å bygge og strukturere API-et, håndtere HTTP-forespørsler og validere input via modellklasser
+- **ASP.NET Core** – brukes til å bygge og strukturere API-et, håndtere HTTP-forespørsler og validere input via modellklasser. 
 
-- **Swagger** – gir et interaktivt grensesnitt for testing og dokumentasjon av API-endepunkter
+- **Swagger** – gir et interaktivt grensesnitt for testing og dokumentasjon av API-endepunkter.
 
-- **Entity Framework Core** – brukes til å koble API-et til en database, håndtere datamodellering og lagring via `DbContext` og migrasjoner
+- **Entity Framework Core** – brukes til å koble API-et til en database (SQLite), håndtere datamodellering og lagring via `DbContext` og migrasjoner.
 
-- **In-memory data** – ble brukt i tidligere versjon for å simulere databehandling før databaseintegrasjon ble implementert
+- **In-memory data** – ble brukt i tidligere versjon for å simulere databehandling før databaseintegrasjon ble implementert.
 
 ## Formål
 
