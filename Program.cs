@@ -12,15 +12,26 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Registrerer OppgaveRepository og OppgaveService for dependency injection.
-// Scoped livstid brukes fordi tjenestene jobber med DbContext, som også er scoped.
-// Dette sikrer at hver HTTP-forespørsel får sin egen instans og unngår trådproblemer.
+// Scoped livstid brukes fordi tjenestene jobber med DbContext, som ogsï¿½ er scoped.
+// Dette sikrer at hver HTTP-forespï¿½rsel fï¿½r sin egen instans og unngï¿½r trï¿½dproblemer.
 builder.Services.AddScoped<OppgaveRepository>();
 builder.Services.AddScoped<OppgaveService>();
 builder.Services.AddDbContext<OppgaveContext>(options =>
 	options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// GjÃ¸r at React-appen fÃ¥r lov til Ã¥ kommunisere med API-et
+builder.Services.AddCors(options => {
+    options.AddPolicy("TillatFrontend", policy => {
+        policy.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
+
+app.UseRouting();
+app.UseCors("TillatFrontend");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
