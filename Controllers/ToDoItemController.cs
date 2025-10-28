@@ -5,7 +5,7 @@ using miniAPI.Services;
 namespace miniAPI.Controllers {
         /// <summary>
     /// Klasse som håndterer HTTP-forespørsler.
-    /// Bruker OppgaveService til å utføre forretningslogikk.
+    /// Bruker ToDoItemService til å utføre forretningslogikk.
     /// Attributtene angir at denne klassen er en API-controller, spesifiserer hvilke HTTP-ruter den skal håndtere,
     /// og at metodene returnerer JSON.
     /// </summary>
@@ -13,7 +13,7 @@ namespace miniAPI.Controllers {
     [Route("api/[controller]")]
     [Produces("application/json")]
     public class ToDoItemController : ControllerBase {
-        // OppgaveService injiseres via dependency injection og lagres i et readonly-felt.
+        // ToDoItemService injiseres via dependency injection og lagres i et readonly-felt.
         // Dette gir controlleren tilgang til forretningslogikken uten å være ansvarlig for instansiering.
         private readonly ToDoItemService _service;
 

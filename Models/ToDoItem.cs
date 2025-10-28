@@ -1,13 +1,11 @@
 using System;
-/// Gir tilgang til valideringsattributter, som [Required] og [StringLength]. 
-/// Brukes for å sikre datakvalitet og automatisk input-validering i API-et.
 using System.ComponentModel.DataAnnotations; 
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace miniAPI.Models {
     ///<summary>
     /// Representerer en oppgave i systemet.
-    /// Inneholder ID, tittel og tidspunkt for opprettelse
+    /// Inneholder ID, tittel og tidspunkt for opprettelse.
     /// </summary>
     public class ToDoItem {
 
