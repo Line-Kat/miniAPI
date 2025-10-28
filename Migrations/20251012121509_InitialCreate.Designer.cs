@@ -10,7 +10,7 @@ using miniAPI.Repositories;
 
 namespace miniAPI.Migrations
 {
-    [DbContext(typeof(OppgaveContext))]
+    [DbContext(typeof(ToDoItemContext))]
     [Migration("20251012121509_InitialCreate")]
     partial class InitialCreate
     {

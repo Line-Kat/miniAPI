@@ -12,13 +12,13 @@ namespace miniAPI.Controllers {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class OppgaverController : ControllerBase {
+    public class ToDoItemController : ControllerBase {
         // OppgaveService injiseres via dependency injection og lagres i et readonly-felt.
         // Dette gir controlleren tilgang til forretningslogikken uten å være ansvarlig for instansiering.
-        private readonly OppgaveService _service;
+        private readonly ToDoItemService _service;
 
         // Kontruktør
-        public OppgaverController( OppgaveService service) {
+        public ToDoItemController(ToDoItemService service) {
             _service = service;
         }
 
@@ -28,20 +28,20 @@ namespace miniAPI.Controllers {
         /// ActionResult er en returtype som brukes i controller-metoder for å representere et HTTP-svar.
         /// </summary>
         [HttpGet]
-        public async Task<ActionResult<List<Oppgave>>> HentAlle() {
-            var oppgaver = await _service.HentAlle();
-            return Ok(oppgaver);
+        public async Task<ActionResult<List<ToDoItem>>> GetAll() {
+            var toDoItems = await _service.GetAll();
+            return Ok(toDoItems);
         }
 
         /// <summary>
         /// Metode som returnerer en bestemt oppgave basert på ID eller NotFound om oppgaven ikke finnes.
         /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Oppgave>> HentOppgaveEtterId(int id) {
-            var oppgave = await _service.HentOppgaveEtterId(id);
-            if(oppgave == null) return NotFound();
+        public async Task<ActionResult<ToDoItem>> GetToDoItemById(int id) {
+            var toDoItem = await _service.GetToDoItemById(id);
+            if(toDoItem == null) return NotFound();
             
-            return Ok(oppgave);
+            return Ok(toDoItem);
         }
 
         /// <summary>
@@ -49,13 +49,13 @@ namespace miniAPI.Controllers {
         /// CreatedAtAction returnerer statuskode 201 Created, en Location-header med URL til den nye ressursen og selve objektet.
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult<Oppgave>> LeggTilOppgave(Oppgave oppgave) {
-            var nyOppgave = await _service.LeggTilOppgave(oppgave);
+        public async Task<ActionResult<ToDoItem>> AddToDoItem(Models.ToDoItem toDoItem) {
+            var newToDoItem = await _service.AddToDoItem(toDoItem);
             
             return CreatedAtAction(
-                nameof(HentOppgaveEtterId), 
-                new {id = nyOppgave.Id},
-                nyOppgave
+                nameof(GetToDoItemById), 
+                new {id = newToDoItem.Id},
+                newToDoItem
                 );
         }
 
@@ -64,11 +64,11 @@ namespace miniAPI.Controllers {
         /// Returnerer 404 dersom oppgaven ikke finnes.
         /// </summary>
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Oppgave>> SlettOppgaveEtterId(int id) {
-            var slettet = await _service.SlettOppgaveEtterId(id);
-            if(slettet == null) return NotFound();
+        public async Task<ActionResult<ToDoItem>> DeleteToDoItemById(int id) {
+            var deleted = await _service.DeleteToDoItemById(id);
+            if(deleted == null) return NotFound();
 
-            return Ok(slettet);
+            return Ok(deleted);
         }
     }
 }
