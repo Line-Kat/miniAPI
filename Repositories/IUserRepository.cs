@@ -20,10 +20,10 @@ public interface IUserRepository {
     /// Sjekker om et brukernavn allerede finnes i databasen.
     /// </summary>
     Task<bool> ExistsAsync(string username);
-   
-   /// <summary>
-   /// Lagrer ny bruker i databasen.
-   /// Brukes ved registrering.
-   /// </summary>
+
+    /// <summary>
+    /// Lagrer ny bruker i databasen.
+    /// Brukes ved registrering.
+    /// </summary>
     Task CreateUserAsync(User user);
 }
