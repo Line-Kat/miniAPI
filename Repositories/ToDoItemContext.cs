@@ -16,10 +16,10 @@ namespace miniAPI.Repositories {
         public ToDoItemContext(DbContextOptions<ToDoItemContext> options) : base(options) { } // Konstruktør
 
         /// <summary>
-        /// En tabell med navn Oppgaver.
-        /// DbSet<Oppgave> betyr at det kan gjøres CRUD-operasjoner på Oppgave-objektet.
-        /// EF Core bruker denne linjen til å mappe C#-klassen Oppgave til len database-tabell.
+        /// En tabell med navn ToDoItems.
+        /// DbSet<ToDoItem> betyr at det kan gjøres CRUD-operasjoner på Oppgave-objektet.
+        /// EF Core bruker denne linjen til å mappe klassen ToDoItem til en database-tabell.
         /// </summary>
-        public DbSet<Models.ToDoItem> ToDoItems { get; set;}
+        public DbSet<ToDoItem> ToDoItems { get; set;}
     }
 }

@@ -4,8 +4,8 @@ using miniAPI.Models;
 namespace miniAPI.Repositories {
 
     /// <summary>
-    /// Klasse for CRUD-operasjoner på Oppgave-tabellen.
-    /// Bruker OppgaveContext for å kommunisere med databasen.
+    /// Klasse for CRUD-operasjoner på ToDiItems-tabellen.
+    /// Bruker ToDoItemContext for å kommunisere med databasen.
     /// </summary>
     public class ToDoItemRepository {
         
@@ -35,7 +35,7 @@ namespace miniAPI.Repositories {
 
         /// <summary>
         /// Asynkron metode som returnerer en bestemt oppgave basert på ID.
-        /// Returnerer Oppgave-objektet hvis det finnes, ellers null.
+        /// Returnerer ToDoItem-objektet hvis det finnes, ellers null.
         /// Bruker EF Core sin FindAsync()-metode, som returnerer null hvis ID ikke finnes.
         /// </summary>
         public async Task<ToDoItem?> GetToDoItemByIdAsync(int id) {
