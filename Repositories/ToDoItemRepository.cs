@@ -7,18 +7,18 @@ namespace miniAPI.Repositories {
     /// Klasse for CRUD-operasjoner på Oppgave-tabellen.
     /// Bruker OppgaveContext for å kommunisere med databasen.
     /// </summary>
-    public class OppgaveRepository {
+    public class ToDoItemRepository {
         
         /// <summary>
         /// OppgaveContext injiseres via dependency injection og lagres i et readonly-felt (_context).
         /// Dette gir repository tilgang til databasetilkobling uten å være ansvarlig for instansiering.
         /// </summary>
-        private readonly OppgaveContext _context;
+        private readonly ToDoItemContext _context;
 
         /// <summary>
         /// Konstruktør som mottar OppgaveContext via Dependency Injection.
         /// </summary>
-        public OppgaveRepository(OppgaveContext context) {
+        public ToDoItemRepository(ToDoItemContext context) {
             _context = context;
         }
 
@@ -29,8 +29,8 @@ namespace miniAPI.Repositories {
         /// Den returnerer alltid en gyldig liste, enten med elementer, eller som en tom liste hvis tabellen er tom.
         /// Task&lt;T&gt; representerer en operasjon som kjører i bakgrunnen og returnerer et resultat av typen T.
         /// </summary>
-        public async Task<List<Oppgave>> HentAlleAsync() {
-            return await _context.Oppgaver.ToListAsync();
+        public async Task<List<ToDoItem>> GetAllAsync() {
+            return await _context.ToDoItems.ToListAsync();
         }
 
         /// <summary>
@@ -38,18 +38,18 @@ namespace miniAPI.Repositories {
         /// Returnerer Oppgave-objektet hvis det finnes, ellers null.
         /// Bruker EF Core sin FindAsync()-metode, som returnerer null hvis ID ikke finnes.
         /// </summary>
-        public async Task<Oppgave?> HentOppgaveEtterIdAsync(int id) {
-            return await _context.Oppgaver.FindAsync(id);
+        public async Task<ToDoItem?> GetToDoItemByIdAsync(int id) {
+            return await _context.ToDoItems.FindAsync(id);
         }
 
         /// <summary>
         /// Asynkron metode som legger til oppgave i databasen.
         /// </summary>
-        public async Task<Oppgave> LeggTilOppgaveAsync(Oppgave oppgave) {
-            await _context.Oppgaver.AddAsync(oppgave);
+        public async Task<ToDoItem> AddToDoItemAsync(Models.ToDoItem toDoItem) {
+            await _context.ToDoItems.AddAsync(toDoItem);
             await _context.SaveChangesAsync();
 
-            return oppgave;
+            return toDoItem;
         }
 
         /// <summary>
@@ -57,15 +57,15 @@ namespace miniAPI.Repositories {
         /// Først hentes oppgaven basert på ID. Dersom den ikke finnes, returneres null.
         /// Hvis oppgaven finnes, slettes den og endringen lagres.
         /// </summary>
-        public async Task<Oppgave?> SlettOppgaveEtterIdAsync(int id) {
-            var oppgave = await _context.Oppgaver.FindAsync(id);
+        public async Task<ToDoItem?> DeleteToDoItemByAsync(int id) {
+            var toDoItem = await _context.ToDoItems.FindAsync(id);
 
-            if(oppgave == null) return null;
+            if(toDoItem == null) return null;
 
-            _context.Oppgaver.Remove(oppgave);
+            _context.ToDoItems.Remove(toDoItem);
             await _context.SaveChangesAsync();
 
-            return oppgave;
+            return toDoItem;
         }
     }
 }

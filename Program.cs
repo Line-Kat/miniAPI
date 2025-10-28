@@ -14,9 +14,9 @@ builder.Services.AddSwaggerGen();
 // Registrerer OppgaveRepository og OppgaveService for dependency injection.
 // Scoped livstid brukes fordi tjenestene jobber med DbContext, som ogs� er scoped.
 // Dette sikrer at hver HTTP-foresp�rsel f�r sin egen instans og unng�r tr�dproblemer.
-builder.Services.AddScoped<OppgaveRepository>();
-builder.Services.AddScoped<OppgaveService>();
-builder.Services.AddDbContext<OppgaveContext>(options =>
+builder.Services.AddScoped<ToDoItemRepository>();
+builder.Services.AddScoped<ToDoItemService>();
+builder.Services.AddDbContext<ToDoItemContext>(options =>
 	options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Gjør at React-appen får lov til å kommunisere med API-et

@@ -9,7 +9,7 @@ using miniAPI.Repositories;
 
 namespace miniAPI.Migrations
 {
-    [DbContext(typeof(OppgaveContext))]
+    [DbContext(typeof(ToDoItemContext))]
     partial class OppgaveContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

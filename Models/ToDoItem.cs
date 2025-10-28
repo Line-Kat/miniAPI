@@ -9,7 +9,7 @@ namespace miniAPI.Models {
     /// Representerer en oppgave i systemet.
     /// Inneholder ID, tittel og tidspunkt for opprettelse
     /// </summary>
-    public class Oppgave {
+    public class ToDoItem {
 
         /// <summary>
         /// Unik identifikator for oppgaven (primærnøkkel).
@@ -25,12 +25,12 @@ namespace miniAPI.Models {
         /// </summary>
         [Required(ErrorMessage = "Oppgaven må ha en tittel.")]
         [StringLength(100, ErrorMessage = "Tittelen kan ikke være lengre enn 100 tegn.")]
-        public string Tittel { get; set; } = string.Empty; // Ved å sette string.Empty får Tittel en standardverdi ("") når et nytt Oppgave-objekt opprettes
+        public string Title { get; set; } = string.Empty; // Ved å sette string.Empty får Tittel en standardverdi ("") når et nytt Oppgave-objekt opprettes
 
         /// <summary>
         /// Dato og klokkeslett for opprettelse av oppgaven settes automatisk.
         /// </summary>
         [Required]
-        public DateTime Opprettet { get; set; } = DateTime.UtcNow;
+        public DateTime Created { get; set; } = DateTime.UtcNow;
     }
 }
