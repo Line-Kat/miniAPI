@@ -17,9 +17,15 @@ namespace miniAPI.Repositories {
 
         /// <summary>
         /// En tabell med navn ToDoItems.
-        /// DbSet<ToDoItem> betyr at det kan gjøres CRUD-operasjoner på Oppgave-objektet.
+        /// DbSet<ToDoItem> betyr at det kan gjøres CRUD-operasjoner på ToDoItem-objektet.
         /// EF Core bruker denne linjen til å mappe klassen ToDoItem til en database-tabell.
         /// </summary>
-        public DbSet<ToDoItem> ToDoItems { get; set;}
+        public DbSet<ToDoItem> ToDoItems { get; set; }
+        
+        /// <summary>
+        /// En tabell med navn Users.
+        /// DbSet<User> gir tilgang til  CRUD-operasjoner på User-objektet.
+        /// </summary>
+        public DbSet<User> Users { get; set; }
     }
 }
