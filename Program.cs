@@ -16,6 +16,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<ToDoItemRepository>();
 builder.Services.AddScoped<ToDoItemService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserService>();
 
 //Registrerer EF Core DbContext.
 builder.Services.AddDbContext<ToDoItemContext>(options =>

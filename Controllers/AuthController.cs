@@ -41,7 +41,7 @@ public class AuthController : ControllerBase
     /// Returnerer 401 Unauthorized ved feil, ellers 200 Ok med brukerdata.
     /// </summary>
     [HttpPost("login")]
-    public async Task<ActionResult> Login(LoginDto dto)
+    public async Task<ActionResult<PublicUserDto>> Login(LoginDto dto)
     {
         var user = await _authService.LoginAsync(dto.Username, dto.Password);
         if (user == null) return Unauthorized("Feil brukernavn eller passord");

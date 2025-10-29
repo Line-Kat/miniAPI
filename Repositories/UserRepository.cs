@@ -1,4 +1,6 @@
+using Azure.Identity;
 using Microsoft.EntityFrameworkCore;
+using miniAPI.Dtos;
 using miniAPI.Models;
 
 namespace miniAPI.Repositories;
@@ -51,9 +53,21 @@ public class UserRepository : IUserRepository
     /// Lagrer en ny bruker i databasen.
     /// Brukes ved registrering etter at validering og passord-hashing er utført.
     /// </summary>
-    public async Task CreateUserAsync(User user)
+    public async Task<PublicUserDto?> CreateUserAsync(User user)
     {
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
+
+        return new PublicUserDto { Username = user.Username };
+    }
+
+    /// <summary>
+    /// Sletter en bruker fra databasen og returnerer offentlig brukerdata.
+    /// 
+    public async Task<PublicUserDto?> DeleteUserAsync(User user)
+    {
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+        return new PublicUserDto { Username = user.Username };
     }
 }

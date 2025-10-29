@@ -1,3 +1,4 @@
+using miniAPI.Dtos;
 using miniAPI.Models;
 
 /// <summary>
@@ -25,5 +26,7 @@ public interface IUserRepository {
     /// Lagrer ny bruker i databasen.
     /// Brukes ved registrering.
     /// </summary>
-    Task CreateUserAsync(User user);
+    Task<PublicUserDto?> CreateUserAsync(User user);
+
+    Task<PublicUserDto?> DeleteUserAsync(User user);
 }
