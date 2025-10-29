@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using miniAPI.Dtos;
-using miniAPI.Models;
 using miniAPI.Services;
 
 namespace miniAPI.Controllers;

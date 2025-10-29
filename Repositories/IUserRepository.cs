@@ -28,5 +28,8 @@ public interface IUserRepository {
     /// </summary>
     Task<PublicUserDto?> CreateUserAsync(User user);
 
+    /// <summary>
+    /// Sletter en bruker fra databasen.
+    /// </Summary>
     Task<PublicUserDto?> DeleteUserAsync(User user);
 }

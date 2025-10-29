@@ -1,8 +1,15 @@
 using miniAPI.Services;
 using miniAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Legger til støtte for UserSecrets i utviklingsmiljøet.
+// Brukes til å lagre sensitive konfigurasjonsverdier uten å inkludere dem i kildekoden eller appsettings.json.
+builder.Configuration.AddUserSecrets<Program>();
 
 // Registrerer grunnleggende tjenester som gjør API-et tilgjengelig og dokumentert.
 // AddControllers aktiverer API-ruter.
@@ -17,6 +24,26 @@ builder.Services.AddScoped<ToDoItemRepository>();
 builder.Services.AddScoped<ToDoItemService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<AuthService>();
+
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer("Bearer", Options =>
+    {
+        Options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                builder.Configuration["Jwt:Key"]!)
+            )
+        };
+    });
+        
 
 //Registrerer EF Core DbContext.
 builder.Services.AddDbContext<ToDoItemContext>(options =>
@@ -45,6 +72,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection(); Deaktivert for lokal utvikling
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
