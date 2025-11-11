@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using miniAPI.Repositories;
 
@@ -10,9 +11,11 @@ using miniAPI.Repositories;
 namespace miniAPI.Migrations
 {
     [DbContext(typeof(ToDoItemContext))]
-    partial class OppgaveContextModelSnapshot : ModelSnapshot
+    [Migration("20251029122318_AddUserTable")]
+    partial class AddUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.9");
